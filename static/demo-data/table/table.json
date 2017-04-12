@@ -1,0 +1,95 @@
+{
+  "rules": {
+    "header": [
+      {
+        "name": "#sn",
+        "title": "#sn"
+      },
+      {
+        "name": "name",
+        "title": "名称",
+        "type": "text",
+        "filter": true
+      }
+    ],
+    "action": {
+      "add": true,
+      "detail": true,
+      "update": true,
+      "delete": true
+    },
+    "feature": {
+      "filter": true,
+      "pager": true
+    }
+  },
+  "data": {
+    "rows": [
+      {
+        "key": 1,
+        "value": [
+          "小一"
+        ]
+      },
+      {
+        "key": 2,
+        "value": [
+          "小二"
+        ]
+      },
+      {
+        "key": 3,
+        "value": [
+          "小3"
+        ]
+      },
+      {
+        "key": 4,
+        "value": [
+          "小4"
+        ]
+      },
+      {
+        "key": 5,
+        "value": [
+          "小5"
+        ]
+      },
+      {
+        "key": 6,
+        "value": [
+          "小6"
+        ]
+      },
+      {
+        "key": 7,
+        "value": [
+          "小7"
+        ]
+      },
+      {
+        "key": 8,
+        "value": [
+          "小8"
+        ]
+      },
+      {
+        "key": 9,
+        "value": [
+          "小9"
+        ]
+      },
+      {
+        "key": 10,
+        "value": [
+          "小10"
+        ]
+      }
+    ],
+    "totalCount": 23,
+    "pager": {
+      "pageSize": 10,
+      "currentPage": 1
+    }
+  }
+}
