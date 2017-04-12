@@ -224,6 +224,161 @@ app.get('/data/table-delete.html', function (req, res) {
   });
   res.end();
 });
+app.get( '/data/form-init.html', function (req, res) {
+  var id = parseInt(req.query.key)
+  res.json({
+    "rules": {
+      "items": [
+        {
+          "name": "name",
+          "label": "姓名",
+          "type": "text",
+          "validate": [{
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }],
+          "defaultValue": "姓名",
+          "placeholder": "请输入姓名",
+          "locked": false,
+          "error": true
+        },
+        {
+          "name": "testPassword",
+          "label": "测试Password",
+          "type": "password",
+          "validate": [{
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }]
+        },
+        {
+          "name": "testNumber",
+          "label": "测试Number",
+          "type": "number",
+          "validate": [{
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }]
+        },
+        {
+          "name": "testSelect",
+          "label": "测试select",
+          "type": "select",
+          "validate": [{
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }],
+          "defaultValue": "2",
+          "items": [
+            {
+              "label": "测试1",
+              "value": "1"
+            },
+            {
+              "label": "测试2",
+              "value": "2"
+            },
+            {
+              "label": "测试3",
+              "value": "3"
+            }
+          ]
+        },
+        {
+          "name": "testRadio",
+          "label": "测试Radio",
+          "type": "radio",
+          "validate": [{
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }],
+          "defaultValue": "1",
+          "items": [
+            {
+              "label": "测试1",
+              "value": "1"
+            },
+            {
+              "label": "测试2",
+              "value": "2"
+            },
+            {
+              "label": "测试3",
+              "value": "3"
+            }
+          ]
+        },
+        {
+          "name": "testCheckbox",
+          "label": "测试Checkbox",
+          "type": "checkbox",
+          "validate": [{
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }],
+          "defaultValue": [
+            "1",
+            "2"
+          ],
+          "items": [
+            {
+              "label": "测试1",
+              "value": "1"
+            },
+            {
+              "label": "测试2",
+              "value": "2"
+            },
+            {
+              "label": "测试3",
+              "value": "3"
+            }
+          ]
+        },
+        {
+          "name": "testTextArea",
+          "label": "测试TextArea",
+          "type": "textarea",
+          "validate": [{
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }],
+          "defaultValue": "看一看，瞧一瞧",
+          "rows": 10,
+          "placeholder": "this is textarea"
+        }
+      ],
+      "action": {
+        "save": {
+          "label": "保存"
+        },
+        "reset": {
+          "label": "重置"
+        },
+        "backup": {
+          "label": "返回列表"
+        }
+      }
+    }
+  })
+});
+app.post('/data/form-save.html', function (req, res) {
+  var data = req.body
+  if (data && data.name) {
+    tableData.push({
+      "key": new Date().getTime(),
+      "value": [
+        data.name
+      ]
+    })
+  }
+  res.json({
+    success: {
+      title: '向测试table中保存数据',
+      message: '保存成功'
+    }
+  })
+});
 app.listen(3000, function () {
   console.log('Test Liaonong app listening on port 3000!');
 });

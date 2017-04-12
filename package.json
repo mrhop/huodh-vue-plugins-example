@@ -18,7 +18,7 @@
     "bootstrap-vue": "^0.10.0-alpha.1",
     "file": "^0.2.2",
     "fs": "0.0.1-security",
-    "huodh-vue-plugins": "^1.0.6",
+    "huodh-vue-plugins": ">=1.1.0",
     "lodash": "^4.17.4",
     "system": "^1.3.0",
     "velocity-animate": "^1.4.3",
