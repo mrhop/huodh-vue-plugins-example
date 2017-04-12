@@ -1,8 +1,9 @@
 {
-  "name": "liaonong",
+  "name": "huodh-vue-plugins-example",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "Vue.js common use plugins",
   "author": "mrhop <233402923@qq.com>",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
