@@ -110,6 +110,9 @@ html, body {
       }
     }
   }
+  div.date-picker .date-panel {
+    z-index: 1001;
+  }
 }
 
 // 继续left tree的实现，使用灰度作为边框，

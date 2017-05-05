@@ -17,139 +17,162 @@ var tableData = [
   {
     "key": 1,
     "value": [
-      "小一"
+      "小一",
+      1493568000000
     ]
   },
   {
     "key": 2,
     "value": [
-      "小二"
+      "小二",
+      1493568000000
     ]
   },
   {
     "key": 3,
     "value": [
-      "小3"
+      "小3",
+      1493568000000
     ]
   },
   {
     "key": 4,
     "value": [
-      "小4"
+      "小4",
+      1493568000000
     ]
   },
   {
     "key": 5,
     "value": [
-      "小5"
+      "小5",
+      1493568000000
     ]
   },
   {
     "key": 6,
     "value": [
-      "小6"
+      "小6",
+      1493568000000
     ]
   },
   {
     "key": 7,
     "value": [
-      "小7"
+      "小7",
+      1493568000000
     ]
   },
   {
     "key": 8,
     "value": [
-      "小8"
+      "小8",
+      1493568000000
     ]
   },
   {
     "key": 9,
     "value": [
-      "小9"
+      "小9",
+      1493568000000
     ]
   },
   {
     "key": 10,
     "value": [
-      "小10"
+      "小10",
+      1493568000000
     ]
   },
   {
     "key": 11,
     "value": [
-      "小1一"
+      "小1一",
+      1493568000000
     ]
   },
   {
     "key": 12,
     "value": [
-      "小1二"
+      "小1二",
+      1493568000000
     ]
   },
   {
     "key": 13,
     "value": [
-      "小13"
+      "小13",
+      1493568000000
     ]
   },
   {
     "key": 14,
     "value": [
-      "小14"
+      "小14",
+      1493568000000
     ]
   },
   {
     "key": 15,
     "value": [
-      "小15"
+      "小15",
+      1493568000000
     ]
   },
   {
     "key": 16,
     "value": [
-      "小16"
+      "小16",
+      1493568000000
     ]
   },
   {
     "key": 17,
     "value": [
-      "小17"
+      "小17",
+      1493568000000
     ]
   },
   {
     "key": 18,
     "value": [
-      "小18"
+      "小18",
+      1493568000000
     ]
   },
   {
     "key": 19,
     "value": [
-      "小19"
+      "小19",
+      1493568000000
     ]
   },
   {
     "key": 20,
     "value": [
-      "小20"
+      "小20",
+      1493568000000
     ]
   },
   {
     "key": 21,
     "value": [
-      "小2一"
+      "小2一",
+      1493568000000
     ]
   },
   {
     "key": 22,
     "value": [
-      "小2二"
+      "小2二",
+      1493568000000
     ]
   },
   {
     "key": 23,
     "value": [
-      "小23"
+      "小23",
+      1493568000000
     ]
   }
 ]
@@ -165,7 +188,11 @@ app.post('/data/table.html', function (req, res) {
       return o.value[0].indexOf(filters.name) > -1
     })
   }
-
+  if (filters && filters.testDate) {
+    subData = lodash.filter(subData, function (o) {
+      return o.value[1] < filters.testDate
+    })
+  }
   if ((pager.currentPage - 1) * pager.pageSize >= subData.length) {
     pager.currentPage = Math.ceil(subData.length / pager.pageSize)
     if (pager.currentPage === 0) {
@@ -186,6 +213,12 @@ app.post('/data/table.html', function (req, res) {
             "name": "name",
             "title": "名称",
             "type": "text",
+            "filter": true
+          },
+          {
+            "name": "testDate",
+            "title": "在此之前",
+            "type": "date",
             "filter": true
           }
         ],
@@ -259,6 +292,28 @@ app.get( '/data/form-init.html', function (req, res) {
             "errorMsg": "不能为空",
             "regex": "^\\S+$"
           }]
+        },
+        {
+          "name": "testDate",
+          "label": "测试日期",
+          "type": "date",
+          "validate": [
+            {
+              "errorMsg": "不能为空",
+              "regex": "^\\S+$"
+            }
+          ]
+        },
+        {
+          "name": "testDateRange",
+          "label": "测试范围日期",
+          "type": "daterange",
+          "validate": [
+            {
+              "errorMsg": "不能为空",
+              "regex": "^\\S+$"
+            }
+          ]
         },
         {
           "name": "testSelect",
@@ -368,7 +423,8 @@ app.post('/data/form-save.html', function (req, res) {
     tableData.push({
       "key": new Date().getTime(),
       "value": [
-        data.name
+        data.name,
+        data.testDate
       ]
     })
   }

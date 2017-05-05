@@ -7,6 +7,7 @@ import Modal from '@/components/index/modal/Modal'
 import Table from '@/components/index/table/Table'
 import Form from '@/components/index/form/Form'
 import Tree from '@/components/index/tree/Tree'
+import Date from '@/components/index/date/Date'
 
 Vue.use(Router)
 
@@ -40,6 +41,10 @@ export default new Router({
       path: '/tree',
       name: 'Tree',
       component: Tree
+    }, {
+      path: '/date',
+      name: 'Date',
+      component: Date
     }
   ]
 })

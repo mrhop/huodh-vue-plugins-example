@@ -255,7 +255,6 @@ app.post(path.posix.join(config.dev.assetsPublicPath, 'data/table.html'), functi
       return o.value[1] < filters.testDate
     })
   }
-
   if ((pager.currentPage - 1) * pager.pageSize >= subData.length) {
     pager.currentPage = Math.ceil(subData.length / pager.pageSize)
     if (pager.currentPage === 0) {

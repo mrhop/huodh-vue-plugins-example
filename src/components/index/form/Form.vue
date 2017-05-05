@@ -1,5 +1,5 @@
 <template>
-  <div class="table-sample">
+  <div class="form-sample">
     <panel>
       <h1 slot="header">Test Form</h1>
       <vform :id="1" :actionUrls="actionUrls"></vform>
