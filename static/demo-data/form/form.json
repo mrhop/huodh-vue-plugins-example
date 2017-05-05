@@ -52,8 +52,7 @@
       {
         "name": "testDateRange",
         "label": "测试范围日期",
-        "type": "date",
-        "range": true,
+        "type": "daterange",
         "validate": [
           {
             "errorMsg": "不能为空",

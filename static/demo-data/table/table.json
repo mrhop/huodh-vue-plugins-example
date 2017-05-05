@@ -10,6 +10,12 @@
         "title": "名称",
         "type": "text",
         "filter": true
+      },
+      {
+        "name": "testDate",
+        "title": "在此之前",
+        "type": "date",
+        "filter": true
       }
     ],
     "action": {
