@@ -5,10 +5,12 @@
         "name": "name",
         "label": "姓名",
         "type": "text",
-        "validate": [{
-          "errorMsg": "不能为空",
-          "regex": "^\\S+$"
-        }],
+        "validate": [
+          {
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }
+        ],
         "defaultValue": "姓名",
         "placeholder": "请输入姓名",
         "locked": false,
@@ -18,28 +20,57 @@
         "name": "testPassword",
         "label": "测试Password",
         "type": "password",
-        "validate": [{
-          "errorMsg": "不能为空",
-          "regex": "^\\S+$"
-        }]
+        "validate": [
+          {
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }
+        ]
       },
       {
         "name": "testNumber",
         "label": "测试Number",
         "type": "number",
-        "validate": [{
-          "errorMsg": "不能为空",
-          "regex": "^\\S+$"
-        }]
+        "validate": [
+          {
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }
+        ]
+      },
+      {
+        "name": "testDate",
+        "label": "测试日期",
+        "type": "date",
+        "validate": [
+          {
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }
+        ]
+      },
+      {
+        "name": "testDateRange",
+        "label": "测试范围日期",
+        "type": "date",
+        "range": true,
+        "validate": [
+          {
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }
+        ]
       },
       {
         "name": "testSelect",
         "label": "测试select",
         "type": "select",
-        "validate": [{
-          "errorMsg": "不能为空",
-          "regex": "^\\S+$"
-        }],
+        "validate": [
+          {
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }
+        ],
         "defaultValue": "2",
         "items": [
           {
@@ -60,10 +91,12 @@
         "name": "testRadio",
         "label": "测试Radio",
         "type": "radio",
-        "validate": [{
-          "errorMsg": "不能为空",
-          "regex": "^\\S+$"
-        }],
+        "validate": [
+          {
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }
+        ],
         "defaultValue": "1",
         "items": [
           {
@@ -84,10 +117,12 @@
         "name": "testCheckbox",
         "label": "测试Checkbox",
         "type": "checkbox",
-        "validate": [{
-          "errorMsg": "不能为空",
-          "regex": "^\\S+$"
-        }],
+        "validate": [
+          {
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }
+        ],
         "defaultValue": [
           "1",
           "2"
@@ -111,10 +146,12 @@
         "name": "testTextArea",
         "label": "测试TextArea",
         "type": "textarea",
-        "validate": [{
-          "errorMsg": "不能为空",
-          "regex": "^\\S+$"
-        }],
+        "validate": [
+          {
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }
+        ],
         "defaultValue": "看一看，瞧一瞧",
         "rows": 10,
         "placeholder": "this is textarea"

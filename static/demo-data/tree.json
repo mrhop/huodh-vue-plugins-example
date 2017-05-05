@@ -31,6 +31,10 @@
       {
         "title": "Tree",
         "url": "/tree"
+      },
+      {
+        "title": "Date",
+        "url": "/date"
       }
     ]
   }
