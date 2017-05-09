@@ -3,6 +3,9 @@ var express = require('express');
 
 var bodyParser = require('body-parser');
 var lodash = require('lodash')
+var fs = require('fs');
+var multer = require('multer')
+var upload = multer({dest: 'upload'})
 
 var app = express();
 
@@ -11,6 +14,7 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+app.use('/upload', express.static('upload'))
 
 // table data init
 var tableData = [
@@ -18,6 +22,8 @@ var tableData = [
     "key": 1,
     "value": [
       "小一",
+      "",
+      "",
       1493568000000
     ]
   },
@@ -25,6 +31,8 @@ var tableData = [
     "key": 2,
     "value": [
       "小二",
+      "",
+      "",
       1493568000000
     ]
   },
@@ -32,6 +40,8 @@ var tableData = [
     "key": 3,
     "value": [
       "小3",
+      "",
+      "",
       1493568000000
     ]
   },
@@ -39,6 +49,8 @@ var tableData = [
     "key": 4,
     "value": [
       "小4",
+      "",
+      "",
       1493568000000
     ]
   },
@@ -46,6 +58,8 @@ var tableData = [
     "key": 5,
     "value": [
       "小5",
+      "",
+      "",
       1493568000000
     ]
   },
@@ -53,6 +67,8 @@ var tableData = [
     "key": 6,
     "value": [
       "小6",
+      "",
+      "",
       1493568000000
     ]
   },
@@ -60,6 +76,8 @@ var tableData = [
     "key": 7,
     "value": [
       "小7",
+      "",
+      "",
       1493568000000
     ]
   },
@@ -67,6 +85,8 @@ var tableData = [
     "key": 8,
     "value": [
       "小8",
+      "",
+      "",
       1493568000000
     ]
   },
@@ -74,6 +94,8 @@ var tableData = [
     "key": 9,
     "value": [
       "小9",
+      "",
+      "",
       1493568000000
     ]
   },
@@ -81,6 +103,8 @@ var tableData = [
     "key": 10,
     "value": [
       "小10",
+      "",
+      "",
       1493568000000
     ]
   },
@@ -88,6 +112,8 @@ var tableData = [
     "key": 11,
     "value": [
       "小1一",
+      "",
+      "",
       1493568000000
     ]
   },
@@ -95,6 +121,8 @@ var tableData = [
     "key": 12,
     "value": [
       "小1二",
+      "",
+      "",
       1493568000000
     ]
   },
@@ -102,6 +130,8 @@ var tableData = [
     "key": 13,
     "value": [
       "小13",
+      "",
+      "",
       1493568000000
     ]
   },
@@ -109,6 +139,8 @@ var tableData = [
     "key": 14,
     "value": [
       "小14",
+      "",
+      "",
       1493568000000
     ]
   },
@@ -116,6 +148,8 @@ var tableData = [
     "key": 15,
     "value": [
       "小15",
+      "",
+      "",
       1493568000000
     ]
   },
@@ -123,6 +157,8 @@ var tableData = [
     "key": 16,
     "value": [
       "小16",
+      "",
+      "",
       1493568000000
     ]
   },
@@ -130,6 +166,8 @@ var tableData = [
     "key": 17,
     "value": [
       "小17",
+      "",
+      "",
       1493568000000
     ]
   },
@@ -137,6 +175,8 @@ var tableData = [
     "key": 18,
     "value": [
       "小18",
+      "",
+      "",
       1493568000000
     ]
   },
@@ -144,6 +184,8 @@ var tableData = [
     "key": 19,
     "value": [
       "小19",
+      "",
+      "",
       1493568000000
     ]
   },
@@ -151,6 +193,8 @@ var tableData = [
     "key": 20,
     "value": [
       "小20",
+      "",
+      "",
       1493568000000
     ]
   },
@@ -158,6 +202,8 @@ var tableData = [
     "key": 21,
     "value": [
       "小2一",
+      "",
+      "",
       1493568000000
     ]
   },
@@ -165,6 +211,8 @@ var tableData = [
     "key": 22,
     "value": [
       "小2二",
+      "",
+      "",
       1493568000000
     ]
   },
@@ -172,6 +220,8 @@ var tableData = [
     "key": 23,
     "value": [
       "小23",
+      "",
+      "",
       1493568000000
     ]
   }
@@ -190,7 +240,7 @@ app.post('/data/table.html', function (req, res) {
   }
   if (filters && filters.testDate) {
     subData = lodash.filter(subData, function (o) {
-      return o.value[1] < filters.testDate
+      return (+o.value[3]) < filters.testDate
     })
   }
   if ((pager.currentPage - 1) * pager.pageSize >= subData.length) {
@@ -214,6 +264,16 @@ app.post('/data/table.html', function (req, res) {
             "title": "名称",
             "type": "text",
             "filter": true
+          },
+          {
+            "name": "testFile",
+            "title": "测试文件",
+            "type": "file"
+          },
+          {
+            "name": "testImg",
+            "title": "测试图片",
+            "type": "image"
           },
           {
             "name": "testDate",
@@ -257,7 +317,7 @@ app.get('/data/table-delete.html', function (req, res) {
   });
   res.end();
 });
-app.get( '/data/form-init.html', function (req, res) {
+app.get('/data/form-init.html', function (req, res) {
   var id = parseInt(req.query.key)
   res.json({
     "rules": {
@@ -278,11 +338,7 @@ app.get( '/data/form-init.html', function (req, res) {
         {
           "name": "testPassword",
           "label": "测试Password",
-          "type": "password",
-          "validate": [{
-            "errorMsg": "不能为空",
-            "regex": "^\\S+$"
-          }]
+          "type": "password"
         },
         {
           "name": "testNumber",
@@ -292,6 +348,19 @@ app.get( '/data/form-init.html', function (req, res) {
             "errorMsg": "不能为空",
             "regex": "^\\S+$"
           }]
+        },
+        {
+          "name": "testFile",
+          "label": "测试File",
+          "type": "file",
+          "quantity": 5,
+          "validate": [{
+            "errorMsg": "只能为图片文件",
+            "regex": "\\.(png|jpe?g|gif|svg)(\\?.*)?$"
+          }],
+          "maxSize": 5000,
+          "required": true,
+          "path": ["http://www.hopever.cn/mogilefs/images/user/photo/14817789496788475104059462733375755.jpg"]
         },
         {
           "name": "testDate",
@@ -417,14 +486,25 @@ app.get( '/data/form-init.html', function (req, res) {
     }
   })
 });
-app.post('/data/form-save.html', function (req, res) {
+app.post('/data/form-save.html', upload.array('testFile', 5), function (req, res) {
+  var files = req.files
+  var filesPath = []
+  for (var index in files) {
+    var replacePath = files[index].path + files[index].originalname.replace(/^.*(\.[^\.\?]*)\??.*$/, '$1')
+    fs.rename(files[index].path, replacePath, function (err) {
+      if (err) console.log('ERROR: ' + err);
+    });
+    filesPath[index] = "upload/" + replacePath.replace(/^.*[\/\\]+(.*)\??.*$/, '$1')
+  }
   var data = req.body
   if (data && data.name) {
     tableData.push({
       "key": new Date().getTime(),
       "value": [
         data.name,
-        data.testDate
+        filesPath,
+        filesPath,
+        +data.testDate
       ]
     })
   }
