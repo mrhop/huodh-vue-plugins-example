@@ -5,12 +5,10 @@
         "name": "name",
         "label": "姓名",
         "type": "text",
-        "validate": [
-          {
-            "errorMsg": "不能为空",
-            "regex": "^\\S+$"
-          }
-        ],
+        "validate": [{
+          "errorMsg": "不能为空",
+          "regex": "^\\S+$"
+        }],
         "defaultValue": "姓名",
         "placeholder": "请输入姓名",
         "locked": false,
@@ -19,24 +17,29 @@
       {
         "name": "testPassword",
         "label": "测试Password",
-        "type": "password",
-        "validate": [
-          {
-            "errorMsg": "不能为空",
-            "regex": "^\\S+$"
-          }
-        ]
+        "type": "password"
       },
       {
         "name": "testNumber",
         "label": "测试Number",
         "type": "number",
-        "validate": [
-          {
-            "errorMsg": "不能为空",
-            "regex": "^\\S+$"
-          }
-        ]
+        "validate": [{
+          "errorMsg": "不能为空",
+          "regex": "^\\S+$"
+        }]
+      },
+      {
+        "name": "testFile",
+        "label": "测试File",
+        "type": "file",
+        "quantity": 5,
+        "validate": [{
+          "errorMsg": "只能为图片文件",
+          "regex": "\\.(png|jpe?g|gif|svg)(\\?.*)?$"
+        }],
+        "maxSize": 5000,
+        "required": true,
+        "path": ["http://www.hopever.cn/mogilefs/images/user/photo/14817789496788475104059462733375755.jpg"]
       },
       {
         "name": "testDate",
@@ -64,12 +67,10 @@
         "name": "testSelect",
         "label": "测试select",
         "type": "select",
-        "validate": [
-          {
-            "errorMsg": "不能为空",
-            "regex": "^\\S+$"
-          }
-        ],
+        "validate": [{
+          "errorMsg": "不能为空",
+          "regex": "^\\S+$"
+        }],
         "defaultValue": "2",
         "items": [
           {
@@ -90,12 +91,10 @@
         "name": "testRadio",
         "label": "测试Radio",
         "type": "radio",
-        "validate": [
-          {
-            "errorMsg": "不能为空",
-            "regex": "^\\S+$"
-          }
-        ],
+        "validate": [{
+          "errorMsg": "不能为空",
+          "regex": "^\\S+$"
+        }],
         "defaultValue": "1",
         "items": [
           {
@@ -116,12 +115,10 @@
         "name": "testCheckbox",
         "label": "测试Checkbox",
         "type": "checkbox",
-        "validate": [
-          {
-            "errorMsg": "不能为空",
-            "regex": "^\\S+$"
-          }
-        ],
+        "validate": [{
+          "errorMsg": "不能为空",
+          "regex": "^\\S+$"
+        }],
         "defaultValue": [
           "1",
           "2"
@@ -145,12 +142,10 @@
         "name": "testTextArea",
         "label": "测试TextArea",
         "type": "textarea",
-        "validate": [
-          {
-            "errorMsg": "不能为空",
-            "regex": "^\\S+$"
-          }
-        ],
+        "validate": [{
+          "errorMsg": "不能为空",
+          "regex": "^\\S+$"
+        }],
         "defaultValue": "看一看，瞧一瞧",
         "rows": 10,
         "placeholder": "this is textarea"
