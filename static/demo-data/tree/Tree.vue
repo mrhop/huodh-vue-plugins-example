@@ -18,12 +18,15 @@
   let panel = huodhVuePlugins.panel
   let tab = huodhVuePlugins.tab
   let tree = huodhVuePlugins.tree
+  global.testFunctionName = function () {
+    alert(456)
+  }
   export default {
     name: 'tree-example',
     data () {
       return {
         tabData: data,
-        treeData: commonUrls.leftTree
+        treeData: commonUrls.leftTreeDemo
       }
     },
     components: {
