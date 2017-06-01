@@ -24,6 +24,7 @@
         tabData: data,
         actionUrls: {
           initUrl: commonUrls.testFormInit,
+          ruleChangeUrl: commonUrls.testFormRuleChange,
           saveUrl: commonUrls.testFormSave,
           backupUrl: commonUrls.vuerouter.testTable
         }

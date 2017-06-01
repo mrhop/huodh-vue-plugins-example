@@ -1,5 +1,5 @@
 <template>
-  <div class="table-sample">
+  <div class="form-sample">
     <panel>
       <h1 slot="header">Test Form</h1>
       <vform :id="1" :actionUrls="actionUrls"></vform>
@@ -24,6 +24,7 @@
         tabData: data,
         actionUrls: {
           initUrl: commonUrls.testFormInit,
+          ruleChangeUrl: commonUrls.testFormRuleChange,
           saveUrl: commonUrls.testFormSave,
           backupUrl: commonUrls.vuerouter.testTable
         }

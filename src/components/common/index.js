@@ -10,6 +10,7 @@ var commonUrls = {
   testTableRowDel: global.basePath + 'data/table-delete.html',
   testFormInit: global.basePath + 'data/form-init.html',
   testFormSave: global.basePath + 'data/form-save.html',
+  testFormRuleChange: global.basePath + 'data/form-rulechange.html',
   vuerouter: {
     testTable: 'table',
     testForm: 'form'

@@ -430,7 +430,50 @@ app.get('/data/form-init.html', function (req, res) {
               "label": "测试3",
               "value": "3"
             }
-          ]
+          ],
+          "ruleChange": true
+        },
+        {
+          "name": "ruleChange1",
+          "label": "联动1",
+          "type": "text",
+          "validate": [{
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }],
+          "defaultValue": "联动测试1",
+          "placeholder": "联动测试1",
+          "locked": false,
+          "hidden": false,
+          "error": true
+        },
+        {
+          "name": "ruleChange2",
+          "label": "联动2",
+          "type": "text",
+          "validate": [{
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }],
+          "defaultValue": "联动测试2",
+          "placeholder": "联动测试2",
+          "locked": false,
+          "hidden": true,
+          "error": true
+        },
+        {
+          "name": "ruleChange3",
+          "label": "联动3",
+          "type": "text",
+          "validate": [{
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }],
+          "defaultValue": "联动测试3",
+          "placeholder": "联动测试3",
+          "locked": false,
+          "hidden": true,
+          "error": true
         },
         {
           "name": "testCheckbox",
@@ -485,6 +528,55 @@ app.get('/data/form-init.html', function (req, res) {
       }
     }
   })
+});
+app.post('/data/form-rulechange.html', function (req, res) {
+  var data = req.body
+  if (data && data.testRadio) {
+    if (data.testRadio == '1') {
+      res.json([
+        {
+          "name": "ruleChange1",
+          "hidden": false
+        }, {
+          "name": "ruleChange2",
+          "hidden": true
+        }, {
+          "name": "ruleChange3",
+          "hidden": true
+        }
+      ])
+    } else if (data.testRadio == '2') {
+      res.json([
+        {
+          "name": "ruleChange1",
+          "hidden": true
+        }, {
+          "name": "ruleChange2",
+          "hidden": false
+        }, {
+          "name": "ruleChange3",
+          "hidden": true
+        }
+      ])
+    } else if (data.testRadio == '3') {
+      res.json([
+        {
+          "name": "ruleChange1",
+          "hidden": true
+        },
+        {
+          "name": "ruleChange2",
+          "hidden": true
+        },
+        {
+          "name": "ruleChange3",
+          "defaultValue": "联动测试3" + new Date().getMilliseconds(),
+          "hidden": false
+        }
+      ])
+    }
+  }
+
 });
 app.post('/data/form-save.html', upload.array('testFile', 5), function (req, res) {
   var files = req.files

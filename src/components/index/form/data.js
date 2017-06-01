@@ -17,5 +17,10 @@ export default [
       }
     },
     'show': false
+  },
+  {
+    'title': '联动规则',
+    'url': 'static/demo-data/form/linkage-desc.html',
+    'show': false
   }
 ]
