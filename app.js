@@ -385,7 +385,7 @@ app.post('/data/tablefortree.html', function (req, res) {
       "data": {
         "rows": subData.slice(0, pager.pageSize),
         "totalCount": subData.length,
-        pager
+        "pager": pager
       }
     })
   } else {
@@ -393,8 +393,8 @@ app.post('/data/tablefortree.html', function (req, res) {
       "data": {
         "rows": returnData,
         "totalCount": subData.length,
-        pager,
-        filters
+        "pager": pager,
+        "filters": filters
       }
     })
   }
