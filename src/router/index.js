@@ -8,6 +8,7 @@ import Table from '@/components/index/table/Table'
 import Form from '@/components/index/form/Form'
 import Tree from '@/components/index/tree/Tree'
 import Date from '@/components/index/date/Date'
+import TreeWithTable from '@/components/index/treeWithTable/TreeWithTable'
 
 Vue.use(Router)
 
@@ -45,6 +46,10 @@ export default new Router({
       path: '/date',
       name: 'Date',
       component: Date
+    }, {
+      path: '/treewithtable',
+      name: 'TreeWithTable',
+      component: TreeWithTable
     }
   ]
 })

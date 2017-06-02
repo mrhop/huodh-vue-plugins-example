@@ -6,7 +6,9 @@ global.basePath = ''
 var commonUrls = {
   leftTree: global.basePath + 'static/demo-data/tree.json',
   leftTreeDemo: global.basePath + 'static/demo-data/tree/tree.json',
+  testTreeWithTableInit: global.basePath + 'static/demo-data/treeWithTable/tree.json',
   testTableInit: global.basePath + 'data/table.html',
+  testTableForTreeInit: global.basePath + 'data/tablefortree.html',
   testTableRowDel: global.basePath + 'data/table-delete.html',
   testFormInit: global.basePath + 'data/form-init.html',
   testFormSave: global.basePath + 'data/form-save.html',

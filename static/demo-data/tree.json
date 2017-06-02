@@ -35,6 +35,10 @@
       {
         "title": "Date",
         "url": "/date"
+      },
+      {
+        "title": "TreeWithTable",
+        "url": "/treewithtable"
       }
     ]
   }

@@ -38,11 +38,7 @@
       },
       {
         "title": "TestClick",
-        "clickFunction": "(function(){alert(123);})"
-      },
-      {
-        "title": "TestClickName",
-        "clickFunctionName": "testFunctionName"
+        "emitClick": true
       },
       {
         "title": "OnlyText"

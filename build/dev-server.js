@@ -371,6 +371,96 @@ app.post(path.posix.join(config.dev.assetsPublicPath, 'data/table.html'), functi
     })
   }
 });
+app.post(path.posix.join(config.dev.assetsPublicPath, 'data/tablefortree.html'), function (req, res) {
+  var from = req.query.from || 0
+  var to = req.query.to || 0
+  var subData = tableData;
+  if (from && !to) {
+    subData = tableData.slice(from - 1)
+  } else if (from && to) {
+    subData = tableData.slice(from - 1, to)
+  }
+  var pager = req.body.pager
+  var init = req.body.init
+  var filters = req.body.filters
+  if (filters && filters.name) {
+    subData = lodash.filter(subData, function (o) {
+      return o.value[0].indexOf(filters.name) > -1
+    })
+  }
+  if (filters && filters.testDate) {
+    subData = lodash.filter(subData, function (o) {
+      return (+o.value[3]) < filters.testDate
+    })
+  }
+  if ((pager.currentPage - 1) * pager.pageSize >= subData.length) {
+    pager.currentPage = Math.ceil(subData.length / pager.pageSize)
+    if (pager.currentPage === 0) {
+      pager.currentPage = 1
+    }
+  }
+  var returnData = subData.slice((pager.currentPage - 1) * pager.pageSize, pager.currentPage * pager.pageSize)
+  if (init) {
+    // 初始化
+    res.json({
+      "rules": {
+        "header": [
+          {
+            "name": "#sn",
+            "title": "#sn"
+          },
+          {
+            "name": "name",
+            "title": "名称",
+            "type": "text",
+            "filter": true
+          },
+          {
+            "name": "testFile",
+            "title": "测试文件",
+            "type": "file"
+          },
+          {
+            "name": "testImg",
+            "title": "测试图片",
+            "type": "image"
+          },
+          {
+            "name": "testDate",
+            "title": "在此之前",
+            "type": "date",
+            "filter": true
+          }
+        ],
+        "action": {
+          "add": false,
+          "detail": false,
+          "update": false,
+          "delete": false
+        },
+        "feature": {
+          "filter": true,
+          "pager": true
+        }
+      },
+      "data": {
+        "rows": subData.slice(0, pager.pageSize),
+        "totalCount": subData.length,
+        pager
+      }
+    })
+  } else {
+    res.json({
+      "data": {
+        "rows": returnData,
+        "totalCount": subData.length,
+        pager,
+        filters
+      }
+    })
+  }
+});
+
 app.get(path.posix.join(config.dev.assetsPublicPath, 'data/table-delete.html'), function (req, res) {
   var id = parseInt(req.query.key)
   lodash.remove(tableData, function (o) {
