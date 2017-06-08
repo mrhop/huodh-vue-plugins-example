@@ -10,7 +10,14 @@ export default [
   {
     'title': 'form数据格式',
     'content': {
-      template: '<pre :data-src="$basePath +\'static/demo-data/form/form.json\'"></pre>',
+      template: '<pre :data-src="$basePath +\'static/demo-data/form/form.json\'"></pre>'
+    },
+    'show': false
+  },
+  {
+    'title': 'form中tree element数据',
+    'content': {
+      template: '<pre :data-src="$basePath +\'static/demo-data/form/tree.json\'"></pre>',
       mounted () {
         Prism.highlightAll()
         Prism.fileHighlight()

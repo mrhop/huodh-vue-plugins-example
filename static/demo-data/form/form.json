@@ -5,10 +5,12 @@
         "name": "name",
         "label": "姓名",
         "type": "text",
-        "validate": [{
-          "errorMsg": "不能为空",
-          "regex": "^\\S+$"
-        }],
+        "validate": [
+          {
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }
+        ],
         "defaultValue": "姓名",
         "placeholder": "请输入姓名",
         "locked": false,
@@ -23,23 +25,29 @@
         "name": "testNumber",
         "label": "测试Number",
         "type": "number",
-        "validate": [{
-          "errorMsg": "不能为空",
-          "regex": "^\\S+$"
-        }]
+        "validate": [
+          {
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }
+        ]
       },
       {
         "name": "testFile",
         "label": "测试File",
         "type": "file",
         "quantity": 5,
-        "validate": [{
-          "errorMsg": "只能为图片文件",
-          "regex": "\\.(png|jpe?g|gif|svg)(\\?.*)?$"
-        }],
+        "validate": [
+          {
+            "errorMsg": "只能为图片文件",
+            "regex": "\\.(png|jpe?g|gif|svg)(\\?.*)?$"
+          }
+        ],
         "maxSize": 5000,
         "required": true,
-        "path": ["http://www.hopever.cn/mogilefs/images/user/photo/14817789496788475104059462733375755.jpg"]
+        "path": [
+          "http://www.hopever.cn/mogilefs/images/user/photo/14817789496788475104059462733375755.jpg"
+        ]
       },
       {
         "name": "testDate",
@@ -67,10 +75,12 @@
         "name": "testSelect",
         "label": "测试select",
         "type": "select",
-        "validate": [{
-          "errorMsg": "不能为空",
-          "regex": "^\\S+$"
-        }],
+        "validate": [
+          {
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }
+        ],
         "defaultValue": "2",
         "items": [
           {
@@ -91,10 +101,12 @@
         "name": "testRadio",
         "label": "测试Radio",
         "type": "radio",
-        "validate": [{
-          "errorMsg": "不能为空",
-          "regex": "^\\S+$"
-        }],
+        "validate": [
+          {
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }
+        ],
         "defaultValue": "1",
         "items": [
           {
@@ -116,10 +128,12 @@
         "name": "ruleChange1",
         "label": "联动1",
         "type": "text",
-        "validate": [{
-          "errorMsg": "不能为空",
-          "regex": "^\\S+$"
-        }],
+        "validate": [
+          {
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }
+        ],
         "defaultValue": "联动测试1",
         "placeholder": "联动测试1",
         "locked": false,
@@ -130,10 +144,12 @@
         "name": "ruleChange2",
         "label": "联动2",
         "type": "text",
-        "validate": [{
-          "errorMsg": "不能为空",
-          "regex": "^\\S+$"
-        }],
+        "validate": [
+          {
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }
+        ],
         "defaultValue": "联动测试2",
         "placeholder": "联动测试2",
         "locked": false,
@@ -144,10 +160,12 @@
         "name": "ruleChange3",
         "label": "联动3",
         "type": "text",
-        "validate": [{
-          "errorMsg": "不能为空",
-          "regex": "^\\S+$"
-        }],
+        "validate": [
+          {
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }
+        ],
         "defaultValue": "联动测试3",
         "placeholder": "联动测试3",
         "locked": false,
@@ -158,10 +176,12 @@
         "name": "testCheckbox",
         "label": "测试Checkbox",
         "type": "checkbox",
-        "validate": [{
-          "errorMsg": "不能为空",
-          "regex": "^\\S+$"
-        }],
+        "validate": [
+          {
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }
+        ],
         "defaultValue": [
           "1",
           "2"
@@ -182,13 +202,28 @@
         ]
       },
       {
+        "name": "testTree",
+        "label": "下拉树控件",
+        "type": "tree",
+        "treeData": "/static/demo-data/form/tree.json",
+        "validate": [
+          {
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }
+        ],
+        "placeholder": "点击选择树"
+      },
+      {
         "name": "testTextArea",
         "label": "测试TextArea",
         "type": "textarea",
-        "validate": [{
-          "errorMsg": "不能为空",
-          "regex": "^\\S+$"
-        }],
+        "validate": [
+          {
+            "errorMsg": "不能为空",
+            "regex": "^\\S+$"
+          }
+        ],
         "defaultValue": "看一看，瞧一瞧",
         "rows": 10,
         "placeholder": "this is textarea"

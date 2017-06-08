@@ -592,6 +592,19 @@ app.get('/data/form-init.html', function (req, res) {
           ]
         },
         {
+          "name": "testTree",
+          "label": "下拉树控件",
+          "type": "tree",
+          "treeData": "/static/demo-data/form/tree.json",
+          "validate": [
+            {
+              "errorMsg": "不能为空",
+              "regex": "^\\S+$"
+            }
+          ],
+          "placeholder": "点击选择树"
+        },
+        {
           "name": "testTextArea",
           "label": "测试TextArea",
           "type": "textarea",

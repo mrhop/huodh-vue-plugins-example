@@ -654,6 +654,19 @@ app.get(path.posix.join(config.dev.assetsPublicPath, 'data/form-init.html'), fun
           ]
         },
         {
+          "name": "testTree",
+          "label": "下拉树控件",
+          "type": "tree",
+          "treeData": "/static/demo-data/form/tree.json",
+          "validate": [
+            {
+              "errorMsg": "不能为空",
+              "regex": "^\\S+$"
+            }
+          ],
+          "placeholder": "点击选择树"
+        },
+        {
           "name": "testTextArea",
           "label": "测试TextArea",
           "type": "textarea",
