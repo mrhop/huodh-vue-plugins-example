@@ -658,6 +658,8 @@ app.get(path.posix.join(config.dev.assetsPublicPath, 'data/form-init.html'), fun
           "label": "下拉树控件",
           "type": "tree",
           "treeData": "/static/demo-data/form/tree.json",
+          "defaultLabel": "测试3",
+          "defaultValue": "3",
           "validate": [
             {
               "errorMsg": "不能为空",

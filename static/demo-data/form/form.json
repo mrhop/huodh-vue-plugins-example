@@ -205,7 +205,9 @@
         "name": "testTree",
         "label": "下拉树控件",
         "type": "tree",
-        "treeData": "/static/demo-data/form/tree.json",
+        "treeData": "/static/demo-data/treeWithTable/tree.json",
+        "defaultLabel": "测试3",
+        "defaultValue": "3",
         "validate": [
           {
             "errorMsg": "不能为空",

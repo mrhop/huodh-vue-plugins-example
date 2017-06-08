@@ -596,6 +596,8 @@ app.get('/data/form-init.html', function (req, res) {
           "label": "下拉树控件",
           "type": "tree",
           "treeData": "/static/demo-data/form/tree.json",
+          "defaultLabel": "测试3",
+          "defaultValue": "3",
           "validate": [
             {
               "errorMsg": "不能为空",
