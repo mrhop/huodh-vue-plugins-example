@@ -446,7 +446,8 @@ app.post(path.posix.join(config.dev.assetsPublicPath, 'data/tablefortree.html'),
       "data": {
         "rows": subData.slice(0, pager.pageSize),
         "totalCount": subData.length,
-        pager
+        pager,
+        "filters": {}
       }
     })
   } else {
