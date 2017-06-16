@@ -776,6 +776,19 @@ app.post(path.posix.join(config.dev.assetsPublicPath, 'data/form-save.html'), up
     }
   })
 });
+app.post(path.posix.join(config.dev.assetsPublicPath, 'data/tree-item-save.html'), function (req, res) {
+  res.json({
+    success: {
+      data: {
+        id: new Date().getTime()
+      }
+    }
+  })
+});
+app.post(path.posix.join(config.dev.assetsPublicPath, 'data/tree-item-update.html'), function (req, res) {
+  res.end()
+});
+
 module.exports = app.listen(port, function (err) {
   if (err) {
     console.log(err)

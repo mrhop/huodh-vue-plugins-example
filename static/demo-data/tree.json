@@ -39,6 +39,10 @@
       {
         "title": "TreeWithTable",
         "url": "/treewithtable"
+      },
+      {
+        "title": "EditTree",
+        "url": "/edittree"
       }
     ]
   }

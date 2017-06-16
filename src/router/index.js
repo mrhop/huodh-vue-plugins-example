@@ -9,6 +9,7 @@ import Form from '@/components/index/form/Form'
 import Tree from '@/components/index/tree/Tree'
 import Date from '@/components/index/date/Date'
 import TreeWithTable from '@/components/index/treeWithTable/TreeWithTable'
+import EditTree from '@/components/index/editTree/EditTree'
 
 Vue.use(Router)
 
@@ -50,6 +51,10 @@ export default new Router({
       path: '/treewithtable',
       name: 'TreeWithTable',
       component: TreeWithTable
+    }, {
+      path: '/edittree',
+      name: 'EditTree',
+      component: EditTree
     }
   ]
 })

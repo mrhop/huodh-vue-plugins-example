@@ -712,6 +712,18 @@ app.post('/data/form-save.html', upload.array('testFile', 5), function (req, res
     }
   })
 });
+app.post('/data/tree-item-save.html', function (req, res) {
+  res.json({
+    success: {
+      data: {
+        id: new Date().getTime()
+      }
+    }
+  })
+});
+app.post('data/tree-item-update.html', function (req, res) {
+  res.end()
+});
 app.listen(3000, function () {
   console.log('Test Liaonong app listening on port 3000!');
 });
