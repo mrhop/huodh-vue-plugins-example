@@ -721,7 +721,7 @@ app.post('/data/tree-item-save.html', function (req, res) {
     }
   })
 });
-app.post('data/tree-item-update.html', function (req, res) {
+app.post('/data/tree-item-update.html', function (req, res) {
   res.end()
 });
 app.listen(3000, function () {
