@@ -27,7 +27,7 @@
         actionUrls: {
           addUrl: commonUrls.testEditTreeSave,
           editUrl: commonUrls.testEditTreeUpdate,
-          deleteUrl: commonUrls.testEditTreeInit
+          deleteUrl: commonUrls.testEditTreeDelete
         }
       }
     },

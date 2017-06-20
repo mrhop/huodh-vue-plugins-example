@@ -776,6 +776,17 @@ app.post(path.posix.join(config.dev.assetsPublicPath, 'data/form-save.html'), up
     }
   })
 });
+app.get(path.posix.join(config.dev.assetsPublicPath, 'data/tree-item-delete.html'), function (req, res) {
+  var id = parseInt(req.query.id)
+  if (id == 5 || id == 6) {
+    res.json({
+      error: {
+        header: '该栏目已锁定',
+        content: '当前状态，不可删除'
+      }
+    })
+  }
+});
 app.post(path.posix.join(config.dev.assetsPublicPath, 'data/tree-item-save.html'), function (req, res) {
   res.json({
     success: {

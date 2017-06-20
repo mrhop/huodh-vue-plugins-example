@@ -712,6 +712,17 @@ app.post('/data/form-save.html', upload.array('testFile', 5), function (req, res
     }
   })
 });
+app.get('/data/tree-item-delete.html', function (req, res) {
+  var id = parseInt(req.query.id)
+  if (id == 5 || id == 6) {
+    res.json({
+      error: {
+        header: '该栏目已锁定',
+        content: '当前状态，不可删除'
+      }
+    })
+  }
+});
 app.post('/data/tree-item-save.html', function (req, res) {
   res.json({
     success: {

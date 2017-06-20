@@ -9,6 +9,7 @@ var commonUrls = {
   testTreeWithTableInit: global.basePath + 'static/demo-data/treeWithTable/tree.json',
   testEditTreeInit: global.basePath + 'static/demo-data/editTree/tree.json',
   testEditTreeSave: global.basePath + 'data/tree-item-save.html',
+  testEditTreeDelete: global.basePath + 'data/tree-item-delete.html',
   testEditTreeUpdate: global.basePath + 'data/tree-item-update.html',
   testTableInit: global.basePath + 'data/table.html',
   testTableForTreeInit: global.basePath + 'data/tablefortree.html',
