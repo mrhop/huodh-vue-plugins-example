@@ -469,7 +469,9 @@ app.get(path.posix.join(config.dev.assetsPublicPath, 'data/table-delete.html'), 
   });
   res.end();
 });
+var formLineAdd = {add1: false, add2: false}
 app.get(path.posix.join(config.dev.assetsPublicPath, 'data/form-init.html'), function (req, res) {
+  formLineAdd = {add1: false, add2: false}
   var id = parseInt(req.query.key)
   res.json({
     "rules": {
@@ -680,7 +682,88 @@ app.get(path.posix.join(config.dev.assetsPublicPath, 'data/form-init.html'), fun
           "defaultValue": "看一看，瞧一瞧",
           "rows": 10,
           "placeholder": "this is textarea"
-        }
+        },
+        [
+          {
+            "name": "testInline1",
+            "label": "测试Inline1",
+            "type": "text",
+            "validate": [
+              {
+                "errorMsg": "不能为空",
+                "regex": "^\\S+$"
+              }
+            ]
+          },
+          {
+            "name": "testInline2",
+            "label": "测试Inline2",
+            "type": "text"
+          },
+          {
+            "name": "addLine",
+            "label": "添加新行",
+            "defaultValue": "添加新行",
+            "type": "button",
+            "ruleChange": true
+          }
+        ],
+        [
+          {
+            "name": "testInline4",
+            "label": "测试Inline4",
+            "type": "text",
+            "validate": [
+              {
+                "errorMsg": "不能为空",
+                "regex": "^\\S+$"
+              }
+            ],
+            "hidden": true
+          },
+          {
+            "name": "testInline5",
+            "label": "测试Inline5",
+            "type": "text",
+            "hidden": true
+          },
+          {
+            "name": "delLine1",
+            "label": "删除本行",
+            "defaultValue": "删除本行",
+            "type": "button",
+            "ruleChange": true,
+            "hidden": true
+          }
+        ],
+        [
+          {
+            "name": "testInline6",
+            "label": "测试Inline6",
+            "type": "text",
+            "validate": [
+              {
+                "errorMsg": "不能为空",
+                "regex": "^\\S+$"
+              }
+            ],
+            "hidden": true
+          },
+          {
+            "name": "testInline7",
+            "label": "测试Inline7",
+            "type": "text",
+            "hidden": true
+          },
+          {
+            "name": "delLine2",
+            "label": "删除本行",
+            "defaultValue": "删除本行",
+            "type": "button",
+            "ruleChange": true,
+            "hidden": true
+          }
+        ]
       ],
       "action": {
         "save": {
@@ -695,6 +778,11 @@ app.get(path.posix.join(config.dev.assetsPublicPath, 'data/form-init.html'), fun
       }
     }
   })
+});
+app.get(path.posix.join(config.dev.assetsPublicPath, 'data/form-reset.html'), function (req, res) {
+  formLineAdd = {add1: false, add2: false}
+  var id = parseInt(req.query.key)
+  res.end()
 });
 
 app.post(path.posix.join(config.dev.assetsPublicPath, 'data/form-rulechange.html'), function (req, res) {
@@ -744,7 +832,68 @@ app.post(path.posix.join(config.dev.assetsPublicPath, 'data/form-rulechange.html
       ])
     }
   }
-
+  if (data && data.addLine) {
+    // add line
+    if (!formLineAdd.add1) {
+      formLineAdd.add1 = true
+      res.json([
+        {
+          "name": "testInline4",
+          "hidden": false
+        }, {
+          "name": "testInline5",
+          "hidden": false
+        }, {
+          "name": "delLine1",
+          "hidden": false
+        }
+      ])
+    } else if (!formLineAdd.add2) {
+      formLineAdd.add2 = true
+      res.json([
+        {
+          "name": "testInline6",
+          "hidden": false
+        }, {
+          "name": "testInline7",
+          "hidden": false
+        }, {
+          "name": "delLine2",
+          "hidden": false
+        }
+      ])
+    }
+  }
+  if (data && data.delLine1) {
+    formLineAdd.add1 = false
+    res.json([
+      {
+        "name": "testInline4",
+        "hidden": true
+      }, {
+        "name": "testInline5",
+        "hidden": true
+      }, {
+        "name": "delLine1",
+        "hidden": true
+      }
+    ])
+  }
+  if (data && data.delLine2) {
+    formLineAdd.add2 = false
+    res.json([
+      {
+        "name": "testInline6",
+        "hidden": true
+      }, {
+        "name": "testInline7",
+        "hidden": true
+      }, {
+        "name": "delLine2",
+        "hidden": true
+      }
+    ])
+  }
 });
 app.post(path.posix.join(config.dev.assetsPublicPath, 'data/form-save.html'), upload.array('testFile', 5), function (req, res) {
   // file deal

@@ -15,6 +15,7 @@ var commonUrls = {
   testTableForTreeInit: global.basePath + 'data/tablefortree.html',
   testTableRowDel: global.basePath + 'data/table-delete.html',
   testFormInit: global.basePath + 'data/form-init.html',
+  testFormReset: global.basePath + 'data/form-reset.html',
   testFormSave: global.basePath + 'data/form-save.html',
   testFormRuleChange: global.basePath + 'data/form-rulechange.html',
   vuerouter: {

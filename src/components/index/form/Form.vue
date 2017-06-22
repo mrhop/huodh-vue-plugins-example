@@ -26,6 +26,7 @@
           initUrl: commonUrls.testFormInit,
           ruleChangeUrl: commonUrls.testFormRuleChange,
           saveUrl: commonUrls.testFormSave,
+          resetUrl: commonUrls.testFormReset,
           backupUrl: commonUrls.vuerouter.testTable
         }
       }
