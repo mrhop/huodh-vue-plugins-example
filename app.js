@@ -870,6 +870,8 @@ app.get('/data/tree-item-delete.html', function (req, res) {
         content: '当前状态，不可删除'
       }
     })
+  } else {
+    res.end()
   }
 });
 app.post('/data/tree-item-save.html', function (req, res) {

@@ -934,6 +934,8 @@ app.get(path.posix.join(config.dev.assetsPublicPath, 'data/tree-item-delete.html
         content: '当前状态，不可删除'
       }
     })
+  } else {
+    res.end()
   }
 });
 app.post(path.posix.join(config.dev.assetsPublicPath, 'data/tree-item-save.html'), function (req, res) {
