@@ -2,7 +2,7 @@
   <div class="table-sample">
     <panel>
       <h1 slot="header">Test Table</h1>
-      <vtable :id="1" :actionUrls="actionUrls"></vtable>
+      <vtable :id="1" :editable="true" :actionUrls="actionUrls" :actions="actions"></vtable>
     </panel>
     <panel>
       <tab :data="tabData"/>
@@ -28,6 +28,14 @@
           detailUrl: commonUrls.testTableInit,
           deleteUrl: commonUrls.testTableRowDel,
           infoUrl: commonUrls.testTableInit
+        },
+        actions: {
+          edit: function (args) {
+            console.log('this is for editing')
+            if (args && args.headerItem && (args.headerItem.type === 'file' || args.headerItem.type === 'image')) {
+              return 'http://www.hopever.cn/mogilefs/images/user/photo/14817789496788475104059462733375755.jpg'
+            }
+          }
         }
       }
     },

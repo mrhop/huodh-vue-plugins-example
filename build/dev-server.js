@@ -83,7 +83,8 @@ let tableData = [
     "key": 1,
     "value": [
       "小一",
-      "",
+      [1, 2],
+      1,
       "",
       1493568000000
     ]
@@ -92,6 +93,7 @@ let tableData = [
     "key": 2,
     "value": [
       "小二",
+      "",
       "",
       "",
       1493568000000
@@ -103,6 +105,7 @@ let tableData = [
       "小3",
       "",
       "",
+      "",
       1493568000000
     ]
   },
@@ -110,6 +113,7 @@ let tableData = [
     "key": 4,
     "value": [
       "小4",
+      "",
       "",
       "",
       1493568000000
@@ -121,6 +125,7 @@ let tableData = [
       "小5",
       "",
       "",
+      "",
       1493568000000
     ]
   },
@@ -128,6 +133,7 @@ let tableData = [
     "key": 6,
     "value": [
       "小6",
+      "",
       "",
       "",
       1493568000000
@@ -139,6 +145,7 @@ let tableData = [
       "小7",
       "",
       "",
+      "",
       1493568000000
     ]
   },
@@ -146,6 +153,7 @@ let tableData = [
     "key": 8,
     "value": [
       "小8",
+      "",
       "",
       "",
       1493568000000
@@ -157,6 +165,7 @@ let tableData = [
       "小9",
       "",
       "",
+      "",
       1493568000000
     ]
   },
@@ -164,6 +173,7 @@ let tableData = [
     "key": 10,
     "value": [
       "小10",
+      "",
       "",
       "",
       1493568000000
@@ -175,6 +185,7 @@ let tableData = [
       "小1一",
       "",
       "",
+      "",
       1493568000000
     ]
   },
@@ -182,6 +193,7 @@ let tableData = [
     "key": 12,
     "value": [
       "小1二",
+      "",
       "",
       "",
       1493568000000
@@ -193,6 +205,7 @@ let tableData = [
       "小13",
       "",
       "",
+      "",
       1493568000000
     ]
   },
@@ -200,6 +213,7 @@ let tableData = [
     "key": 14,
     "value": [
       "小14",
+      "",
       "",
       "",
       1493568000000
@@ -211,6 +225,7 @@ let tableData = [
       "小15",
       "",
       "",
+      "",
       1493568000000
     ]
   },
@@ -218,6 +233,7 @@ let tableData = [
     "key": 16,
     "value": [
       "小16",
+      "",
       "",
       "",
       1493568000000
@@ -229,6 +245,7 @@ let tableData = [
       "小17",
       "",
       "",
+      "",
       1493568000000
     ]
   },
@@ -236,6 +253,7 @@ let tableData = [
     "key": 18,
     "value": [
       "小18",
+      "",
       "",
       "",
       1493568000000
@@ -247,6 +265,7 @@ let tableData = [
       "小19",
       "",
       "",
+      "",
       1493568000000
     ]
   },
@@ -254,6 +273,7 @@ let tableData = [
     "key": 20,
     "value": [
       "小20",
+      "",
       "",
       "",
       1493568000000
@@ -265,6 +285,7 @@ let tableData = [
       "小2一",
       "",
       "",
+      "",
       1493568000000
     ]
   },
@@ -272,6 +293,7 @@ let tableData = [
     "key": 22,
     "value": [
       "小2二",
+      "",
       "",
       "",
       1493568000000
@@ -283,16 +305,17 @@ let tableData = [
       "小23",
       "",
       "",
+      "",
       1493568000000
     ]
   }
 ]
-
 // 默认table data的获取
 app.post(path.posix.join(config.dev.assetsPublicPath, 'data/table.html'), function (req, res) {
   var pager = req.body.pager
   var init = req.body.init
   var filters = req.body.filters
+  var sorts = req.body.sorts
   var subData = tableData;
   if (filters && filters.name) {
     subData = lodash.filter(tableData, function (o) {
@@ -301,8 +324,16 @@ app.post(path.posix.join(config.dev.assetsPublicPath, 'data/table.html'), functi
   }
   if (filters && filters.testDate) {
     subData = lodash.filter(subData, function (o) {
-      return (+o.value[3]) < filters.testDate
+      return (+o.value[4]) < filters.testDate
     })
+  }
+  if (filters && filters.testSelect) {
+    subData = lodash.filter(subData, function (o) {
+      return (+o.value[2]) === filters.testSelect
+    })
+  }
+  if (sorts && sorts.name) {
+    lodash.reverse(subData)
   }
   if ((pager.currentPage - 1) * pager.pageSize >= subData.length) {
     pager.currentPage = Math.ceil(subData.length / pager.pageSize)
@@ -324,21 +355,61 @@ app.post(path.posix.join(config.dev.assetsPublicPath, 'data/table.html'), functi
             "name": "name",
             "title": "名称",
             "type": "text",
-            "filter": true
+            "editable": true,
+            "filter": true,
+            "sortable": true
           },
           {
-            "name": "testFile",
-            "title": "测试文件",
-            "type": "file"
+            "name": "testCheckbox",
+            "title": "测试多选",
+            "type": "checkbox",
+            "editable": true,
+            "items": [
+              {
+                "label": "测试1",
+                "value": 1
+              },
+              {
+                "label": "测试2",
+                "value": 2
+              },
+              {
+                "label": "测试3",
+                "value": 3
+              }
+            ]
+          },
+          {
+            "name": "testSelect",
+            "title": "测试select",
+            "type": "select",
+            "editable": true,
+            "filter": true,
+            "items": [
+              {
+                "label": "测试1",
+                "value": 1
+              },
+              {
+                "label": "测试2",
+                "value": 2
+              },
+              {
+                "label": "测试3",
+                "value": 3
+              }
+            ]
           },
           {
             "name": "testImg",
             "title": "测试图片",
-            "type": "image"
+            "type": "image",
+            "editable": true,
           },
           {
             "name": "testDate",
             "title": "在此之前",
+            "editable": true,
             "type": "date",
             "filter": true
           }
@@ -366,7 +437,8 @@ app.post(path.posix.join(config.dev.assetsPublicPath, 'data/table.html'), functi
         "rows": returnData,
         "totalCount": subData.length,
         pager,
-        filters
+        filters,
+        sorts
       }
     })
   }
