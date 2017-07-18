@@ -22,7 +22,8 @@ var tableData = [
     "key": 1,
     "value": [
       "小一",
-      "",
+      [1, 2],
+      1,
       "",
       1493568000000
     ]
@@ -31,6 +32,7 @@ var tableData = [
     "key": 2,
     "value": [
       "小二",
+      "",
       "",
       "",
       1493568000000
@@ -42,6 +44,7 @@ var tableData = [
       "小3",
       "",
       "",
+      "",
       1493568000000
     ]
   },
@@ -49,6 +52,7 @@ var tableData = [
     "key": 4,
     "value": [
       "小4",
+      "",
       "",
       "",
       1493568000000
@@ -60,6 +64,7 @@ var tableData = [
       "小5",
       "",
       "",
+      "",
       1493568000000
     ]
   },
@@ -67,6 +72,7 @@ var tableData = [
     "key": 6,
     "value": [
       "小6",
+      "",
       "",
       "",
       1493568000000
@@ -78,6 +84,7 @@ var tableData = [
       "小7",
       "",
       "",
+      "",
       1493568000000
     ]
   },
@@ -85,6 +92,7 @@ var tableData = [
     "key": 8,
     "value": [
       "小8",
+      "",
       "",
       "",
       1493568000000
@@ -96,6 +104,7 @@ var tableData = [
       "小9",
       "",
       "",
+      "",
       1493568000000
     ]
   },
@@ -103,6 +112,7 @@ var tableData = [
     "key": 10,
     "value": [
       "小10",
+      "",
       "",
       "",
       1493568000000
@@ -114,6 +124,7 @@ var tableData = [
       "小1一",
       "",
       "",
+      "",
       1493568000000
     ]
   },
@@ -121,6 +132,7 @@ var tableData = [
     "key": 12,
     "value": [
       "小1二",
+      "",
       "",
       "",
       1493568000000
@@ -132,6 +144,7 @@ var tableData = [
       "小13",
       "",
       "",
+      "",
       1493568000000
     ]
   },
@@ -139,6 +152,7 @@ var tableData = [
     "key": 14,
     "value": [
       "小14",
+      "",
       "",
       "",
       1493568000000
@@ -150,6 +164,7 @@ var tableData = [
       "小15",
       "",
       "",
+      "",
       1493568000000
     ]
   },
@@ -157,6 +172,7 @@ var tableData = [
     "key": 16,
     "value": [
       "小16",
+      "",
       "",
       "",
       1493568000000
@@ -168,6 +184,7 @@ var tableData = [
       "小17",
       "",
       "",
+      "",
       1493568000000
     ]
   },
@@ -175,6 +192,7 @@ var tableData = [
     "key": 18,
     "value": [
       "小18",
+      "",
       "",
       "",
       1493568000000
@@ -186,6 +204,7 @@ var tableData = [
       "小19",
       "",
       "",
+      "",
       1493568000000
     ]
   },
@@ -193,6 +212,7 @@ var tableData = [
     "key": 20,
     "value": [
       "小20",
+      "",
       "",
       "",
       1493568000000
@@ -204,6 +224,7 @@ var tableData = [
       "小2一",
       "",
       "",
+      "",
       1493568000000
     ]
   },
@@ -211,6 +232,7 @@ var tableData = [
     "key": 22,
     "value": [
       "小2二",
+      "",
       "",
       "",
       1493568000000
@@ -222,16 +244,17 @@ var tableData = [
       "小23",
       "",
       "",
+      "",
       1493568000000
     ]
   }
 ]
-
 // 默认table data的获取
 app.post('/data/table.html', function (req, res) {
   var pager = req.body.pager
   var init = req.body.init
   var filters = req.body.filters
+  var sorts = req.body.sorts
   var subData = tableData;
   if (filters && filters.name) {
     subData = lodash.filter(tableData, function (o) {
@@ -240,8 +263,16 @@ app.post('/data/table.html', function (req, res) {
   }
   if (filters && filters.testDate) {
     subData = lodash.filter(subData, function (o) {
-      return (+o.value[3]) < filters.testDate
+      return (+o.value[4]) < filters.testDate
     })
+  }
+  if (filters && filters.testSelect) {
+    subData = lodash.filter(subData, function (o) {
+      return (+o.value[2]) === filters.testSelect
+    })
+  }
+  if (sorts && sorts.name) {
+    lodash.reverse(subData)
   }
   if ((pager.currentPage - 1) * pager.pageSize >= subData.length) {
     pager.currentPage = Math.ceil(subData.length / pager.pageSize)
@@ -263,21 +294,61 @@ app.post('/data/table.html', function (req, res) {
             "name": "name",
             "title": "名称",
             "type": "text",
-            "filter": true
+            "editable": true,
+            "filter": true,
+            "sortable": true
           },
           {
-            "name": "testFile",
-            "title": "测试文件",
-            "type": "file"
+            "name": "testCheckbox",
+            "title": "测试多选",
+            "type": "checkbox",
+            "editable": true,
+            "items": [
+              {
+                "label": "测试1",
+                "value": 1
+              },
+              {
+                "label": "测试2",
+                "value": 2
+              },
+              {
+                "label": "测试3",
+                "value": 3
+              }
+            ]
+          },
+          {
+            "name": "testSelect",
+            "title": "测试select",
+            "type": "select",
+            "editable": true,
+            "filter": true,
+            "items": [
+              {
+                "label": "测试1",
+                "value": 1
+              },
+              {
+                "label": "测试2",
+                "value": 2
+              },
+              {
+                "label": "测试3",
+                "value": 3
+              }
+            ]
           },
           {
             "name": "testImg",
             "title": "测试图片",
-            "type": "image"
+            "type": "image",
+            "editable": true,
           },
           {
             "name": "testDate",
             "title": "在此之前",
+            "editable": true,
             "type": "date",
             "filter": true
           }
@@ -305,7 +376,8 @@ app.post('/data/table.html', function (req, res) {
         "rows": returnData,
         "totalCount": subData.length,
         "pager": pager,
-        "filters": filters
+        "filters": filters,
+        "sorts": sorts
       }
     })
   }
@@ -351,42 +423,71 @@ app.post('/data/tablefortree.html', function (req, res) {
           {
             "name": "name",
             "title": "名称",
-            "type": "text",
-            "filter": true
+            "type": "text"
           },
           {
-            "name": "testFile",
-            "title": "测试文件",
-            "type": "file"
+            "name": "testCheckbox",
+            "title": "测试多选",
+            "type": "checkbox",
+            "items": [
+              {
+                "label": "测试1",
+                "value": 1
+              },
+              {
+                "label": "测试2",
+                "value": 2
+              },
+              {
+                "label": "测试3",
+                "value": 3
+              }
+            ]
+          },
+          {
+            "name": "testSelect",
+            "title": "测试select",
+            "type": "select",
+            "items": [
+              {
+                "label": "测试1",
+                "value": 1
+              },
+              {
+                "label": "测试2",
+                "value": 2
+              },
+              {
+                "label": "测试3",
+                "value": 3
+              }
+            ]
           },
           {
             "name": "testImg",
             "title": "测试图片",
-            "type": "image"
+            "type": "image",
           },
           {
             "name": "testDate",
             "title": "在此之前",
             "type": "date",
-            "filter": true
           }
         ],
         "action": {
-          "add": false,
-          "detail": false,
-          "update": false,
-          "delete": false
+          "add": true,
+          "detail": true,
+          "update": true,
+          "delete": true
         },
         "feature": {
-          "filter": true,
           "pager": true
         }
       },
       "data": {
         "rows": subData.slice(0, pager.pageSize),
         "totalCount": subData.length,
-        "pager": pager,
-        "filters": {}
+        "pager": pager
       }
     })
   } else {
@@ -400,6 +501,7 @@ app.post('/data/tablefortree.html', function (req, res) {
     })
   }
 });
+
 app.get('/data/table-delete.html', function (req, res) {
   var id = parseInt(req.query.key)
   lodash.remove(tableData, function (o) {
@@ -833,6 +935,7 @@ app.post('/data/form-rulechange.html', function (req, res) {
   }
 });
 app.post('/data/form-save.html', upload.array('testFile', 5), function (req, res) {
+  // file deal
   var files = req.files
   var filesPath = []
   for (var index in files) {
@@ -840,7 +943,7 @@ app.post('/data/form-save.html', upload.array('testFile', 5), function (req, res
     fs.rename(files[index].path, replacePath, function (err) {
       if (err) console.log('ERROR: ' + err);
     });
-    filesPath[index] = "upload/" + replacePath.replace(/^.*[\/\\]+(.*)\??.*$/, '$1')
+    filesPath[index] = uri + "/static/upload/" + replacePath.replace(/^.*[\/\\]+(.*)\??.*$/, '$1')
   }
   var data = req.body
   if (data && data.name) {
