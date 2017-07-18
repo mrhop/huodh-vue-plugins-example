@@ -484,42 +484,71 @@ app.post(path.posix.join(config.dev.assetsPublicPath, 'data/tablefortree.html'),
           {
             "name": "name",
             "title": "名称",
-            "type": "text",
-            "filter": true
+            "type": "text"
           },
           {
-            "name": "testFile",
-            "title": "测试文件",
-            "type": "file"
+            "name": "testCheckbox",
+            "title": "测试多选",
+            "type": "checkbox",
+            "items": [
+              {
+                "label": "测试1",
+                "value": 1
+              },
+              {
+                "label": "测试2",
+                "value": 2
+              },
+              {
+                "label": "测试3",
+                "value": 3
+              }
+            ]
+          },
+          {
+            "name": "testSelect",
+            "title": "测试select",
+            "type": "select",
+            "items": [
+              {
+                "label": "测试1",
+                "value": 1
+              },
+              {
+                "label": "测试2",
+                "value": 2
+              },
+              {
+                "label": "测试3",
+                "value": 3
+              }
+            ]
           },
           {
             "name": "testImg",
             "title": "测试图片",
-            "type": "image"
+            "type": "image",
           },
           {
             "name": "testDate",
             "title": "在此之前",
             "type": "date",
-            "filter": true
           }
         ],
         "action": {
-          "add": false,
-          "detail": false,
-          "update": false,
-          "delete": false
+          "add": true,
+          "detail": true,
+          "update": true,
+          "delete": true
         },
         "feature": {
-          "filter": true,
           "pager": true
         }
       },
       "data": {
         "rows": subData.slice(0, pager.pageSize),
         "totalCount": subData.length,
-        pager,
-        "filters": {}
+        pager
       }
     })
   } else {

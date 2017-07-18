@@ -10,6 +10,9 @@ import Tree from '@/components/index/tree/Tree'
 import Date from '@/components/index/date/Date'
 import TreeWithTable from '@/components/index/treeWithTable/TreeWithTable'
 import EditTree from '@/components/index/editTree/EditTree'
+import ActionForm from '@/components/index/actionForm/ActionForm'
+import ActionTable from '@/components/index/actionTable/ActionTable'
+import ActionTree from '@/components/index/actionTree/ActionTree'
 
 Vue.use(Router)
 
@@ -55,6 +58,18 @@ export default new Router({
       path: '/edittree',
       name: 'EditTree',
       component: EditTree
+    }, {
+      path: '/actionform',
+      name: 'ActionForm',
+      component: ActionForm
+    }, {
+      path: '/actiontable',
+      name: 'ActionTable',
+      component: ActionTable
+    }, {
+      path: '/actiontree',
+      name: 'ActionTree',
+      component: ActionTree
     }
   ]
 })
